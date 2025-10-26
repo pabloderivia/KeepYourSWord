@@ -1,0 +1,97 @@
+# =========================================
+# Unity .gitignore para Windows
+# =========================================
+
+# --- Archivos de sistema de Windows ---
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+ehthumbs.db
+[Dd]esktop.ini
+
+# --- Archivos de Unity ---
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+UserSettings/
+
+# --- Compilaciones ---
+*.apk
+*.aab
+*.xcodeproj
+*.xcworkspace
+*.xcuserstate
+*.xcuserdata/
+*.unitypackage
+
+# --- Archivos generados por VS / IDEs ---
+.vs/
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# --- Archivos de Auto-Generated Packages ---
+ExportedObj/
+*.mdb
+*.pdb
+*.opendb
+*.VC.db
+*.pidb.meta
+
+# --- Archivos de caché / perfiles ---
+*.orig
+*.bak
+*.tmp
+*.log
+*.stackdump
+
+# --- Archivos de Asset Store y paquetes ---
+[Aa]ssets/AssetStoreTools*
+[Aa]ssets/Plugins/Editor/JetBrains*
+Packages/com.unity.package-manager-ui*
+
+# --- Archivos de colaboración ---
+.collabignore
+
+# --- Archivos de configuración local ---
+*.local
+*.user
+*.swp
+*.db
+
+# --- Crash Reports ---
+sysinfo.txt
+
+# --- Ignore JetBrains Rider project files ---
+.idea/
+
+# --- TextMesh Pro ---
+[Aa]ssets/TextMesh Pro/Examples & Extras/
+
+# --- Otros ---
+.DS_Store
+*.blend1
+*.meta~
+
+# --- Opcional: ignorar Lightmaps y datos pesados (si se regeneran automáticamente) ---
+# [Ll]ightmap*
+# [Rr]eflectionProbe*
+# [Ll]ightingData.asset
+# [Ll]ightData.asset
+
+# --- Mantén estos directorios aunque estén vacíos ---
+!Assets/
+!ProjectSettings/
+!Packages/
