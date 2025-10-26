@@ -663,6 +663,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1519720053 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 174760, guid: 3f42b29f9f09e0e40b05df7c984384f1, type: 3}
+  m_PrefabInstance: {fileID: 1906050297}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1906050297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -729,7 +734,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 457334, guid: 3f42b29f9f09e0e40b05df7c984384f1, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1940136614}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 174760, guid: 3f42b29f9f09e0e40b05df7c984384f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1906050301}
   m_SourcePrefab: {fileID: 100100000, guid: 3f42b29f9f09e0e40b05df7c984384f1, type: 3}
 --- !u!4 &1906050298 stripped
 Transform:
@@ -741,6 +749,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 457334, guid: 3f42b29f9f09e0e40b05df7c984384f1, type: 3}
   m_PrefabInstance: {fileID: 1906050297}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1906050301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519720053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38bf7654c3b135945b48a3a6a33f021e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1001 &1940136613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -827,7 +848,6 @@ GameObject:
   - component: {fileID: 2130966311}
   - component: {fileID: 2130966310}
   - component: {fileID: 2130966313}
-  - component: {fileID: 2130966314}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -874,6 +894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotationSpeed: 10
+  isBusy: 0
 --- !u!4 &2130966312
 Transform:
   m_ObjectHideFlags: 0
@@ -936,7 +957,19 @@ MonoBehaviour:
     m_ActionId: 6b444451-8a00-4d00-a97e-f47457f736a8
     m_ActionName: 'Player/Look[/XInputControllerWindows/rightStick,/Mouse/delta]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2130966311}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HandleIsAttacking
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/XInputControllerWindows/buttonWest,/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
@@ -1008,19 +1041,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &2130966314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130966309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38bf7654c3b135945b48a3a6a33f021e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

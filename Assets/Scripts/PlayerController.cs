@@ -8,14 +8,16 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     Vector3 moveDirection;
     CharacterController characterController;
+
     [SerializeField] private float rotationSpeed = 150f;
 
     AnimationController animationController;
+    public bool isBusy = false; 
 
     void Awake()
     {
         characterController = GetComponent<CharacterController>();  
-        animationController = GetComponent<AnimationController>();
+        animationController = GetComponentInChildren<AnimationController>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,7 +28,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        UpdateIsBusy();
+
+        if(!isBusy)
+            Movement();
     }
 
     public void HandleMoveInput(InputAction.CallbackContext context)
@@ -35,11 +40,41 @@ public class PlayerController : MonoBehaviour
         moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
     }
 
+    public void HandleIsAttacking(InputAction.CallbackContext context)
+    {
+        Debug.Log("Trying to attack");
+
+        if(!animationController.GetIsAttacking() && context.phase == InputActionPhase.Started)
+        {
+            Debug.Log("Trying to attack");
+            animationController.SetIsAttacking(true);
+                        
+        }
+    }
+
+
     public void Movement()
     {
         //mueve
         characterController.Move(moveDirection * Time.deltaTime * moveSpeed);
 
+        LookAtAimDirection();
+
+        //Acualiza la anim de movimiento
+        animationController.SetMoveSpeed(GetMoveMagnitud());
+
+
+    }
+
+    private float GetMoveMagnitud()
+    {
+        float absMagnitud = Mathf.Abs(moveInput.x) + Mathf.Abs(moveInput.y);
+        absMagnitud = Mathf.Clamp(absMagnitud, 0, 1);
+        return absMagnitud;
+    }
+
+    private void LookAtAimDirection()
+    {
         //rota al pj
         if (moveDirection != Vector3.zero)
         {
@@ -51,16 +86,19 @@ public class PlayerController : MonoBehaviour
             );
         }
 
-        //Acualiza la anim de movimiento
-        animationController.SetMoveSpeed(GetMoveMagnitud());
 
 
     }
 
-    private float  GetMoveMagnitud()
+    private void UpdateIsBusy()
     {
-        float absMagnitud = Mathf.Abs(moveInput.x) + Mathf.Abs(moveInput.y);
-        absMagnitud = Mathf.Clamp(absMagnitud, 0, 1);
-        return absMagnitud;
+        if (animationController.GetIsAttacking())
+            isBusy = true;
+
+
+        else
+            isBusy = false;
     }
+    
+
 }

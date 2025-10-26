@@ -10,7 +10,7 @@ public class AnimationController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -18,9 +18,25 @@ public class AnimationController : MonoBehaviour
     {
 
     }
-    
+
     public void SetMoveSpeed(float speed)
     {
         animator.SetFloat("MoveSpeed", speed);
+    }
+    public void SetIsAttacking(bool isAttacking)
+    {
+        animator.SetBool("IsAttacking", isAttacking);
+
+    }
+
+    public void SetIsAttackingOff()
+    {
+        animator.SetBool("IsAttacking", false);
+
+    }
+    
+    public bool GetIsAttacking()
+    {
+        return animator.GetBool("IsAttacking");
     }
 }
