@@ -8,11 +8,14 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     Vector3 moveDirection;
     CharacterController characterController;
-    [SerializeField] private float rotationSpeed=150f;
+    [SerializeField] private float rotationSpeed = 150f;
+
+    AnimationController animationController;
 
     void Awake()
     {
         characterController = GetComponent<CharacterController>();  
+        animationController = GetComponent<AnimationController>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         //mueve
         characterController.Move(moveDirection * Time.deltaTime * moveSpeed);
+
         //rota al pj
         if (moveDirection != Vector3.zero)
         {
@@ -47,5 +51,16 @@ public class PlayerController : MonoBehaviour
             );
         }
 
+        //Acualiza la anim de movimiento
+        animationController.SetMoveSpeed(GetMoveMagnitud());
+
+
+    }
+
+    private float  GetMoveMagnitud()
+    {
+        float absMagnitud = Mathf.Abs(moveInput.x) + Mathf.Abs(moveInput.y);
+        absMagnitud = Mathf.Clamp(absMagnitud, 0, 1);
+        return absMagnitud;
     }
 }
