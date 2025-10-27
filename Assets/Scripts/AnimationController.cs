@@ -3,6 +3,7 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    public bool IsAttacking = false;
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -23,20 +24,28 @@ public class AnimationController : MonoBehaviour
     {
         animator.SetFloat("MoveSpeed", speed);
     }
-    public void SetIsAttacking(bool isAttacking)
+    public void SetTriggerAttack( bool applyRootMotion = false )
     {
-        animator.SetBool("IsAttacking", isAttacking);
+        IsAttacking = true;
+        animator.SetTrigger("Attack");
+        animator.applyRootMotion = applyRootMotion;
 
     }
 
     public void SetIsAttackingOff()
     {
-        animator.SetBool("IsAttacking", false);
+        IsAttacking = false;
 
     }
-    
+
     public bool GetIsAttacking()
     {
         return animator.GetBool("IsAttacking");
+    }
+    
+    public void ResetAttackTrigger()
+    {
+        animator.ResetTrigger("Attack");
+      
     }
 }

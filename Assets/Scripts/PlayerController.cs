@@ -44,10 +44,10 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Trying to attack");
 
-        if(!animationController.GetIsAttacking() && context.phase == InputActionPhase.Started)
+        if(context.phase == InputActionPhase.Started)
         {
             Debug.Log("Trying to attack");
-            animationController.SetIsAttacking(true);
+            animationController.SetTriggerAttack();
                         
         }
     }
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateIsBusy()
     {
-        if (animationController.GetIsAttacking())
+        if (animationController.IsAttacking)
             isBusy = true;
 
 
